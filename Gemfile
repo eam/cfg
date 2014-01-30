@@ -5,3 +5,4 @@ gem 'mysql2'
 gem 'sequel'
 
 gem 'sinatra'
+gem 'shotgun'
