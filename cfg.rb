@@ -26,17 +26,17 @@ class CFG < Sinatra::Base
   # Find all tuples that belong to id, and
   # return one at random.
   def random_result(id)
-  	result = settings.db[:cfg_map].where('map_key = ?', id).order(Sequel.lit('rand()')).limit(1)
-  	sql = result.sql
-  	result = result.first
+    result = settings.db[:cfg_map].where('map_key = ?', id).order(Sequel.lit('rand()')).limit(1)
+    sql = result.sql
+    result = result.first  
 
     logger.debug "searching for #{id}"
-  	if !result
-  		raise "Can't find a record for $#{id}"
-  	else
+    if !result
+      raise "Can't find a record for $#{id}"
+    else
       logger.debug "#{sql} #=> #{result[:map_val]}"
-  		result[:map_val]
-  	end
+      result[:map_val]
+    end
   end
 
 
@@ -88,7 +88,6 @@ class CFG < Sinatra::Base
     id = create(params[:key], params[:val])    
     redirect to("/quote/#{params[:key]}")
   end
-
 end
 
 
